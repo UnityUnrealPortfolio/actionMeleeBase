@@ -11,22 +11,25 @@ public class PlayerTestState : PlayerBaseState
 
     public override void Enter()
     {
-        Debug.Log("Entering Test State");  
+
     }
+
+
 
     public override void Exit()
     {
-        Debug.Log("Exiting Test State");
+
     }
 
     public override void Tick(float _deltaTime)
     {
-        Debug.Log("Starting Timer: ");
-        Debug.Log(Mathf.Round(maxTime -= Time.deltaTime));
-        if(maxTime < Mathf.Epsilon)
-        {
-            stateMachine.SwitchState(new PlayerTestState(stateMachine));
-         
-        }
+        //receive movement values each frame from the input reader
+        Vector3 moveVector = new Vector3();
+
+        moveVector.x = stateMachine.m_InputReader.m_MoveInput.x;
+        moveVector.y = 0;
+        moveVector.z = stateMachine.m_InputReader.m_MoveInput.y;
+
+        stateMachine.transform.Translate(moveVector * _deltaTime);
     }
 }
