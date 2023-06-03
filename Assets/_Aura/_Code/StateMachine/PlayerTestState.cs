@@ -30,6 +30,18 @@ public class PlayerTestState : PlayerBaseState
         moveVector.y = 0;
         moveVector.z = stateMachine.m_InputReader.m_MoveInput.y;
 
-        stateMachine.transform.Translate(moveVector * _deltaTime);
+        stateMachine.m_CharacterController.Move(moveVector * _deltaTime * stateMachine.m_FreeLookSpeed);
+
+        //turn character to face direction of movement
+        if(stateMachine.m_InputReader.m_MoveInput != Vector2.zero)
+        {
+            stateMachine.transform.rotation = Quaternion.LookRotation(moveVector);
+            stateMachine.m_Animator.SetFloat("FreeLookSpeed", 1, 0.15f, _deltaTime);
+
+        }
+        else if(stateMachine.m_InputReader.m_MoveInput == Vector2.zero)
+        {
+            stateMachine.m_Animator.SetFloat("FreeLookSpeed", 0, 0.1f, _deltaTime);
+        }
     }
 }

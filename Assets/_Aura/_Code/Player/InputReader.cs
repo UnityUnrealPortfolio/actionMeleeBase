@@ -46,7 +46,8 @@ public class InputReader : MonoBehaviour,PlayerInputMap.IPlayerActionsActions
 
     public void OnMove(InputAction.CallbackContext context)
     {
-       m_MoveInput = context.ReadValue<Vector2>();   
+       m_MoveInput = context.ReadValue<Vector2>(); 
+      
     }
     #endregion
 }
