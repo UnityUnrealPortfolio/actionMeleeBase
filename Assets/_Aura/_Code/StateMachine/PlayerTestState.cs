@@ -36,7 +36,7 @@ public class PlayerTestState : PlayerBaseState
         if(stateMachine.m_InputReader.m_MoveInput != Vector2.zero)
         {
             stateMachine.transform.rotation = Quaternion.LookRotation(moveVector);
-            stateMachine.m_Animator.SetFloat("FreeLookSpeed", 1, 0.15f, _deltaTime);
+            stateMachine.m_Animator.SetFloat("FreeLookSpeed", 1, 0.1f, _deltaTime);
 
         }
         else if(stateMachine.m_InputReader.m_MoveInput == Vector2.zero)
